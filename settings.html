@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Settings - CS Banking</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0f4f8;
+      color: #333;
+      transition: background-color 0.4s ease, color 0.4s ease;
+      animation: fadeIn 0.6s ease-in-out;
+    }
+
+    header {
+      background: linear-gradient(90deg, #004080, #0077cc);
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+      animation: slideDown 0.6s ease-in-out;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .settings-container {
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 25px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+      animation: slideUp 0.6s ease-in-out;
+    }
+
+    .settings-container h2 {
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 15px;
+    }
+
+    .password-wrapper {
+      position: relative;
+    }
+
+    .toggle-eye {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    .form-group input[type="checkbox"] {
+      transform: scale(1.2);
+      margin-right: 10px;
+    }
+
+    .form-group button {
+      background-color: #0074cc;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    .form-group button:hover {
+      background-color: #005fa3;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #dfe6ed;
+      margin-top: 50px;
+    }
+    body.dark-mode {
+      background-color: #121212;
+      color: #e0e0e0;
+    }
+
+    body.dark-mode .settings-container {
+      background-color: #1f1f1f;
+      color: #e0e0e0;
+    }
+
+    body.dark-mode input {
+      background-color: #2c2c2c;
+      color: #fff;
+      border: 1px solid #555;
+    }
+
+    body.dark-mode header {
+      background: linear-gradient(90deg, #222, #333);
+    }
+
+    body.dark-mode footer {
+      background-color: #1a1a1a;
+      color: #aaa;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideDown {
+      from { transform: translateY(-40px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Settings</h1>
+    <p>Manage your preferences</p>
+  </header>
+
+  <main class="settings-container">
+    <h2>Account Settings</h2>
+
+    <div class="form-group">
+      <label for="username">Update Username</label>
+      <input type="text" id="username" placeholder="Enter new username" />
+    </div>
+
+    <div class="form-group">
+      <label for="password">Change Password</label>
+      <div class="password-wrapper">
+        <input type="password" id="password" placeholder="Enter new password" />
+        <span class="toggle-eye" onclick="togglePassword()">👁️</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label><input type="checkbox" id="darkModeToggle" /> Enable Dark Mode</label>
+    </div>
+
+    <div class="form-group">
+      <button onclick="saveSettings()">Save Changes</button>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 CS BANKING SERVICES. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function togglePassword() {
+      const passwordInput = document.getElementById("password");
+      passwordInput.type = passwordInput.type === "password" ? "text" : "password";
+    }
+    function saveSettings() {
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+      alert(`Settings saved!\nUsername: ${username}\nPassword: ${'*'.repeat(password.length)}`);
+    }
+    const toggle = document.getElementById("darkModeToggle");
+
+    toggle.addEventListener("change", function () {
+      document.body.classList.toggle("dark-mode", this.checked);
+      localStorage.setItem("darkModeEnabled", this.checked);
+    });
+    window.addEventListener("DOMContentLoaded", function () {
+      const isDark = localStorage.getItem("darkModeEnabled") === "true";
+      toggle.checked = isDark;
+      document.body.classList.toggle("dark-mode", isDark);
+    });
+  </script>
+</body>
+</html>

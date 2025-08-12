@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Account Profile - CS Bank</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="profile.js">
+  <link rel="stylesheet" href="profile.css">
+
+</head>
+<body>
+  <header>
+    <h1>👤 Account Profile</h1>
+  </header>
+
+  <div class="container">
+    <a href="enter.html" class="back-btn">← Back to Dashboard</a>
+    <button class="back-btn edit-btn" onclick="openModal()" style="display: flex;">✏️ Change Info</button>
+
+    <div class="profile-row"><div class="label">Full Name:</div><div class="value" id="name">Oluwa Psycho</div></div>
+    <div class="profile-row"><div class="label">Account Number:</div><div class="value" id="accNumber">9023048590</div></div>
+    <div class="profile-row"><div class="label">Phone Number:</div><div class="value" id="phone">+234 816 551 4928</div></div>
+    <div class="profile-row"><div class="label">Email Address:</div><div class="value" id="email">psychosolos08@example.com</div></div>
+    <div class="profile-row"><div class="label">Account Type:</div><div class="value" id="type">Savings</div></div>
+    <div class="profile-row"><div class="label">Bank Branch:</div><div class="value" id="branch">LASUSTECH, Lagos</div></div>
+    <div class="profile-row"><div class="label">Date Joined:</div><div class="value" id="joined">June 10, 2025</div></div>
+  </div>
+  <div class="modal" id="editModal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h3>Edit Your Information</h3>
+      <label for="editName">Full Name</label>
+      <input type="text" id="editName" placeholder="Enter new full name">
+
+      <label for="editAccNumber">Account Number</label>
+      <input type="text" id="editAccNumber" placeholder="Enter account number">
+
+      <label for="editPhone">Phone Number</label>
+      <input type="text" id="editPhone" placeholder="Enter phone number">
+
+      <label for="editEmail">Email Address</label>
+      <input type="email" id="editEmail" placeholder="Enter email address">
+
+      <label for="editType">Account Type</label>
+      <input type="text" id="editType" placeholder="Enter account type">
+
+      <button onclick="saveChanges()">💾 Save Changes</button>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 CS BANKING SERVICES. All rights reserved.
+  </footer>
+
+
+</body>
+</html>

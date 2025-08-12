@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Transaction History - CS Bank</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background:  url('mjh-shikder-jypIYXtYw8c-unsplash.jpg')  center ;
+      margin: 0;
+      padding: 0;
+      color: #222;
+      animation: fadeIn 0.6s ease-in-out;
+    }
+    header {
+      background: linear-gradient(to right, #4facfe, #00f2fe);
+      padding: 40px 20px;
+      color: white;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 32px;
+      letter-spacing: 1px;
+      animation: slideDown 0.8s ease-in-out;
+    }
+
+    .container {
+      padding: 50px 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .transaction-card {
+      background: linear-gradient(to right, #ffffff, #e3f2fd);
+      border-left: 8px solid #2196f3;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      margin-bottom: 25px;
+      padding: 24px 28px;
+      animation: fadeSlide 0.6s ease-in-out;
+      transition: transform 0.3s ease;
+    }
+
+    .transaction-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    }
+
+    .transaction-card h3 {
+      margin: 0 0 12px;
+      color: #0d47a1;
+      font-size: 20px;
+    }
+
+    .transaction-card p {
+      margin: 6px 0;
+      font-size: 15px;
+    }
+
+    footer {
+      text-align: center;
+      background: #0077b6;
+      color: white;
+      padding: 20px;
+      font-size: 14px;
+      margin-top: 40px;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .no-transactions {
+      text-align: center;
+      font-size: 20px;
+      margin-top: 60px;
+      color: #555;
+    }
+
+    .back-btn {
+      display: inline-block;
+      background: linear-gradient(to right, #43cea2, #185a9d);
+      color: white;
+      padding: 12px 22px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      margin-bottom: 40px;
+      transition: 0.3s;
+    }
+
+    .back-btn:hover {
+      background: linear-gradient(to right, #185a9d, #43cea2);
+      transform: scale(1.05);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideDown {
+      from { transform: translateY(-20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes fadeSlide {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @media (max-width: 600px) {
+      .transaction-card {
+        padding: 20px;
+      }
+      h1 {
+        font-size: 26px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>📄 Transaction History</h1>
+</header>
+
+<div class="container">
+  <a href="enter.html" class="back-btn">← Back to Dashboard</a>
+  <div id="historyContainer">
+  </div>
+</div>
+
+<footer>
+  &copy; 2025 CS BANKING SERVICES. All rights reserved.
+</footer>
+
+<script>
+  function loadTransactionHistory() {
+    const container = document.getElementById('historyContainer');
+    const records = JSON.parse(localStorage.getItem('csbank_transactions')) || [];
+
+    if (records.length === 0) {
+      container.innerHTML = '<p class="no-transactions">No transactions recorded yet.</p>';
+      return;
+    }
+
+    records.reverse().forEach(record => {
+      const div = document.createElement('div');
+      div.className = 'transaction-card';
+      div.innerHTML = `
+        <h3>${record.type.toUpperCase()} - ₦${parseFloat(record.amount).toLocaleString(undefined, {minimumFractionDigits: 2})}</h3>
+        <p><strong>Date:</strong> ${record.date}</p>
+        <p><strong>Details:</strong></p>
+        ${Object.entries(record.details).map(([k,v]) => `<p>${formatKey(k)}: ${v}</p>`).join('')}
+      `;
+      container.appendChild(div);
+    });
+  }
+
+  function formatKey(key) {
+    return key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
+  }
+
+  window.onload = loadTransactionHistory;
+</script>
+
+</body>
+</html>

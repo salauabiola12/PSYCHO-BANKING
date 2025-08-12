@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>CS Banking Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+  <style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: url('mariia-shalabaieva-GSmXdBMjzcQ-unsplash.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #222;
+  min-height: 100vh;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+header {
+  background: linear-gradient(to right, #4facfe, #00f2fe);
+  color: #fff;
+  padding: 40px 20px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  animation: slideDown 1s ease-in-out;
+}
+
+.dashboard-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+  padding: 40px 20px;
+}
+
+.card {
+  background: linear-gradient(145deg, #ffffff, #e3f2fd);
+  padding: 24px;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  animation: bounceIn 0.7s ease forwards;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.card h2 {
+  color: #0d47a1;
+  margin-bottom: 16px;
+  font-size: 22px;
+}
+
+.card form {
+  display: flex;
+  flex-direction: column;
+}
+
+.card input {
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.card input:focus {
+  outline: none;
+  border-color: #1976d2;
+  box-shadow: 0 0 8px rgba(25, 118, 210, 0.4);
+  animation: inputPop 0.3s ease-out;
+}
+
+.card button {
+  padding: 12px;
+  background: linear-gradient(to right, #1976d2, #0d47a1);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out,  0.3s;
+  margin-top: 10px;
+  animation: pulse 1.5s infinite;
+}
+
+.card button:hover {
+  transform: scale(1.03);
+  background: linear-gradient(to right, #0d47a1, #1976d2);
+}
+.view-profile-btn {
+  display: inline-block;
+  margin-top: 15px;
+  background: #0288d1;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s ease;
+}
+
+.view-profile-btn:hover {
+  background: #01579b;
+  transform: scale(1.05);
+}
+.extra-services .button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.extra-services .button-group a {
+  text-decoration: none;
+  background: #43a047;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  border-radius: 6px;
+  transition: 0.3s ease;
+  font-weight: 500;
+}
+
+.extra-services .button-group a:hover {
+  background-color: #2e7d32;
+  transform: scale(1.05);
+}
+
+.eye {
+  cursor: pointer;
+  font-size: 18px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+footer {
+  background: #0077b6;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  margin-top: 50px;
+  font-size: 14px;
+  animation: slideUp 1s ease-in-out;
+}
+
+.receipt {
+  margin-top: 20px;
+}
+
+.download-link {
+  margin-top: 10px;
+  display: inline-block;
+  background: #0070c9;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.download-link:hover {
+  background: #004e92;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
+.logo img {
+  height: 50px;
+  width: 50px;
+  animation: rotateIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes zoomIn {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes bounceIn {
+  0% { transform: translateY(30px); opacity: 0; }
+  60% { transform: translateY(-10px); opacity: 1; }
+  80% { transform: translateY(5px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes inputPop {
+  from { transform: scale(1); }
+  to { transform: scale(1.02); }
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(33, 150, 243, 0.5); }
+  70% { box-shadow: 0 0 0 10px rgba(33, 150, 243, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(33, 150, 243, 0); }
+}
+
+@keyframes rotateIn {
+  from { transform: rotate(-200deg); opacity: 0; }
+  to { transform: rotate(0); opacity: 1; }
+}
+
+@media screen and (max-width: 600px) {
+  .dashboard-container {
+    padding: 20px 10px;
+  }
+}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="3135715.png" alt="CS Bank Logo">
+      <h1>CS BANKING DASHBOARD</h1>
+    </div>
+  </header>
+  <p style="margin-left: 0; color: blue; font-size: 20px;">Welcome back, User!</p>
+  <main class="dashboard-container">
+    <section class="account-info card">
+  <h2>Account Overview</h2>
+  <p><strong>Account Number:</strong> 9********0</p>
+  <p><strong>Balance:</strong> ₦50,000.00 <span class="eye" data-hidden="false" onclick="toggleBalance(this)">👁️</span></p>
+  <a href="profile.html" class="view-profile-btn">View Profile</a>
+</section>
+
+    <section class="card">
+      <h2>Transfer Money</h2>
+      <form onsubmit="generateReceipt(event, 'transfer')">
+        <input type="text" name="bank" placeholder="Bank Name" required>
+        <input type="text" name="recipient" placeholder="Recipient Name" required>
+        <input type="tel" name="account" placeholder="Recipient Account Number" required>
+        <input type="text" name="desc" placeholder="Purpose of Transfer" required>
+        <input type="number" name="amount" placeholder="Amount (₦)" required>
+        <input type="password" name="pin" placeholder="Transaction PIN" required maxlength="4" title="Enter 4-digit PIN">
+        <button type="submit">Send</button>
+        <div class="receipt" id="transferReceipt"></div>
+      </form>
+    </section>
+
+    <section class="card">
+  <h2>Add Funds</h2>
+  <form onsubmit="generateReceipt(event, 'withdraw')">
+    <input type="number" name="amount" placeholder="Amount to Add (₦)" required>
+    <input type="text" name="source" placeholder="Funding Source (e.g., Cash, Transfer)" required>
+    <input type="text" name="depositor" placeholder="Depositor Name" required>
+    <input type="tel" name="phone" placeholder="Depositor Phone Number" pattern="[0-9]{11}" required title="Enter 11-digit phone number">
+    <input type="date" name="date" value="" required>
+    <input type="password" name="pin" placeholder="Transaction PIN" required maxlength="4" title="Enter 4-digit PIN">
+    <button type="submit">Add Funds</button>
+    <div class="receipt" id="withdrawReceipt"></div>
+  </form>
+</section>
+
+    <section class="card">
+      <h2>Buy Airtime</h2>
+      <form onsubmit="generateReceipt(event, 'airtime')">
+        <input type="tel" name="number" placeholder="Phone Number" required>
+        <input type="text" name="network" placeholder="Network Provider" required>
+        <input type="number" name="amount" placeholder="Amount (₦)" required>
+        <input type="password" name="pin" placeholder="Transaction PIN" required maxlength="4" title="Enter 4-digit PIN">
+        <button type="submit">Buy Airtime</button>
+        <div class="receipt" id="airtimeReceipt"></div>
+      </form>
+    </section>
+    <section class="card extra-services">
+      <h2>Other Services</h2>
+      <div class="button-group">
+        <a href="pay bills.html">Pay Bills</a>
+        <a href="transfer.html">View Transactions</a>
+        <a href="profile.html">Account Profile</a>
+        <a href="settings.html">Settings</a>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2025 CS BANKING SERVICES. All rights reserved.</p>
+  </footer>
+
+<script>
+  let currentBalance = 50000;
+
+  function toggleBalance(icon) {
+    const balanceSpan = icon.closest("p");
+    const isHidden = icon.getAttribute("data-hidden") === "true";
+    balanceSpan.innerHTML = isHidden
+      ? `<strong>Balance:</strong> ₦${currentBalance.toLocaleString(undefined, {minimumFractionDigits: 2})} <span class="eye" data-hidden="false" onclick="toggleBalance(this)">👁️</span>`
+      : `<strong>Balance:</strong> ₦********* <span class="eye" data-hidden="true" onclick="toggleBalance(this)">🙈</span>`;
+  }
+
+  function updateBalanceDisplay() {
+    const balanceParagraph = document.querySelector('.account-info p:nth-child(3)');
+    if (balanceParagraph) {
+      balanceParagraph.innerHTML = `<strong>Balance:</strong> ₦${currentBalance.toLocaleString(undefined, {minimumFractionDigits: 2})} <span class="eye" data-hidden="false" onclick="toggleBalance(this)">👁</span>`;
+    }
+  }
+
+  window.onload = () => {
+    updateBalanceDisplay();
+    const dateInput = document.querySelector('input[name="date"]');
+    if (dateInput) {
+      const today = new Date().toISOString().split("T")[0];
+      dateInput.value = today;
+    }
+  };
+
+  function generateReceipt(event, type) {
+    event.preventDefault();
+    const form = event.target;
+    const data = new FormData(form);
+    const entries = Object.fromEntries(data.entries());
+    const amount = parseFloat(entries.amount);
+    delete entries.pin;
+
+    if (type === "transfer") {
+      if (amount > currentBalance) {
+        alert("Insufficient balance!");
+        return;
+      }
+      currentBalance -= amount;
+    } else if (type === "withdraw") {
+      currentBalance += amount;
+    }
+
+    updateBalanceDisplay();
+    const now = new Date();
+    const record = {
+      type,
+      amount,
+      date: now.toLocaleString(),
+      details: entries
+    };
+    const prev = JSON.parse(localStorage.getItem('csbank_transactions')) || [];
+    prev.push(record);
+    localStorage.setItem('csbank_transactions', JSON.stringify(prev));
+
+    const receiptDiv = document.createElement('div');
+    receiptDiv.style.cssText = `
+      padding: 20px;
+      width: 320px;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #e0f7fa, #ffffff);
+      color: #003366;
+      border: 2px solid #00838f;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      text-align: left;
+    `;
+    receiptDiv.innerHTML = `
+      <h3 style="text-align:center; color: #006064;">✨ CS BANK ✨</h3>
+      <p style="text-align:center; font-style: italic;">Transaction Receipt</p>
+      <hr style="border-color:#00838f;"/>
+      <p><strong>Type:</strong> ${type.toUpperCase()}</p>
+      <p><strong>Date:</strong> ${now.toLocaleDateString()} ${now.toLocaleTimeString()}</p>
+      ${Object.entries(entries).map(([key, val]) => `<p><strong>${formatKey(key)}:</strong> ${val}</p>`).join('')}
+      <hr style="border-color:#00838f;"/>
+      <p style="text-align:center;">✅ Thank you for banking with us!</p>
+    `;
+
+    document.body.appendChild(receiptDiv);
+    html2canvas(receiptDiv).then(canvas => {
+      const imageData = canvas.toDataURL("image/png");
+      const receiptContainer = document.getElementById(`${type}Receipt`);
+      receiptContainer.innerHTML = `
+        <img src="${imageData}" style="width:100%; border-radius: 6px; border: 2px solid #00838f;" />
+        <a class="download-link" href="${imageData}" download="receipt_${type}_${now.getTime()}.png">Download Receipt</a>
+      `;
+      document.body.removeChild(receiptDiv);
+    });
+  }
+
+  function formatKey(key) {
+    return key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
+  }
+</script>
+</body>
+</html>

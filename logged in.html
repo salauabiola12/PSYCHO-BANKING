@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome - CS Banking</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: url('mariia-shalabaieva-ODvmIA3gy6g-unsplash.jpg') no-repeat center center fixed;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      animation: fadeSlideUp 1s ease-out forwards;
+    }
+
+    .righthand {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      animation: zoomFadeIn 1.2s ease-out;
+    }
+
+    .welcome-box {
+      text-align: center;
+      padding: 30px;
+      border: 1px solid #ccc;
+      border-radius: 15px;
+      width: 360px;
+      background-color: #ffffff;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      opacity: 0;
+      animation: zoomFadeIn 1s ease-out forwards;
+      animation-delay: 0.2s;
+    }
+
+    .welcome-box h2 {
+      color: #004080;
+      margin-bottom: 10px;
+    }
+
+    .welcome-box p {
+      margin: 8px 0;
+      font-size: 1rem;
+      color: #333;
+    }
+
+    .actions {
+      margin-top: 20px;
+    }
+
+    .action-button1 {
+      background: linear-gradient(to right, #0074cc, #00aaff);
+    }
+
+    .action-button2 {
+      background: linear-gradient(to right, #03cc00, #00e676);
+    }
+
+    .logout-button {
+      background: linear-gradient(to right, #cc0000, #ff1744);
+    }
+
+    .action-button1, .action-button2, .logout-button {
+      display: inline-block;
+      margin: 10px;
+      padding: 12px 22px;
+      font-size: 1rem;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .action-button1:hover, .action-button2:hover, .logout-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    }
+
+    .bracket {
+      background: #002040;
+      color: white;
+      text-align: center;
+      padding: 1em;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 40px;
+      animation: fadeSlideUp 1.2s ease-out;
+    }
+
+    /* Animations */
+    @keyframes fadeSlideUp {
+      0% {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes zoomFadeIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @media screen and (max-width: 500px) {
+      .welcome-box {
+        width: 90%;
+      }
+
+      .action-button1, .action-button2, .logout-button {
+        padding: 10px 18px;
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="righthand">
+    <div class="welcome-box">
+      <h2>Welcome to Your Dashboard</h2>
+      <p>You are successfully logged in.</p>
+      <p>Access your banking services, view your balance, and manage transactions.</p>
+      
+      <div class="actions">
+        <a href="E-BANKING.html" class="action-button1">Go to Banking Services</a>
+        <a href="enter.html" class="action-button2">Go to Account Profile</a>
+        <a href="login 2.html" class="logout-button">Back To Login</a>
+        <a href="sign up.html" class="logout-button">Sign Up</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="bracket">
+    <p>&copy; 2025 CS BANKING SERVICES. All rights reserved.</p>
+  </div>
+
+</body>
+</html>

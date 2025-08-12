@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pay Bills - CS Banking</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: url('rodion-kutsaiev-9odES-X2Sj0-unsplash.jpg') no-repeat center center fixed;
+      margin: 0;
+      color: #333;
+      transition: background-color 0.5s ease;
+    }
+
+    header {
+      background-color: #004080;
+      color: white;
+      padding: 20px;
+      height: 100px;
+      text-align: center;
+      transition: background-color 0.5s ease;
+    }
+
+    .bill-container {
+      max-width: 600px;
+      margin: 30px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .form-group button {
+      background-color: #0074cc;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .form-group button:hover {
+      background-color: #005fa3;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      background-color: #e6e6e6;
+      margin-top: 40px;
+    }
+
+    .download-link {
+      display: inline-block;
+      margin-top: 10px;
+      background-color: #0074cc;
+      color: white;
+      padding: 8px 14px;
+      border-radius: 6px;
+      text-decoration: none;
+    }
+    
+  </style>
+</head>
+<body>
+  <header id="pageHeader">
+    <h1 id="headerTitle">Pay Bills</h1>
+    <p id="headerSubtitle">Settle utility and service bills easily</p>
+  </header>
+
+  <main class="bill-container">
+    <h2 style="color: #005fa3;">Bill Payment Form</h2>
+    <form id="billForm" onsubmit="handleBillPayment(event)">
+      <div class="form-group">
+        <label for="billType">Select Bill Type</label>
+        <select id="billType" required onchange="updateBillForm()">
+          <option value="">-- Select a Bill --</option>
+          <option value="electricity">Electricity</option>
+          <option value="water">Water</option>
+          <option value="internet">Internet</option>
+          <option value="cable_tv">Cable TV</option>
+          <option value="waste">Waste Management</option>
+          <option value="gas">Gas</option>
+          <option value="school_fees">School Fees</option>
+          <option value="landline">Landline Bill</option>
+          <option value="tax">Tax Payment</option>
+          <option value="security">Security Service</option>
+          <option value="estate">Estate Dues</option>
+          <option value="transport">Transport Recharge</option>
+          <option value="Loan Services">Loan Services</option>
+        </select>
+      </div>
+
+      <div id="dynamicFields"></div>
+
+      <div class="form-group">
+        <label for="pin">Transaction PIN</label>
+        <input type="password" id="pin" placeholder="Enter your transaction PIN" required>
+      </div>
+
+      <div class="form-group">
+        <button type="submit">Pay Now</button>
+      </div>
+    </form>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 CS BANKING SERVICES. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
